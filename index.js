@@ -37,7 +37,7 @@ app.post("/api/sensor", async (req, res) => {
         console.log("Attempting database insert...");
 
         await query(
-            "INSERT INTO PA3 (info) VALUES (?)",
+            "INSERT INTO PA3 (data) VALUES (?)",
             [temperature]
         );
 
