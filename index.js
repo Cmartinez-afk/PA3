@@ -32,7 +32,7 @@ app.post("/api/sensor", async (req, res) => {
     try {
 
         await query(
-            "INSERT INTO pa3 (info) VALUES (?)",
+            "INSERT INTO pa3 (data) VALUES (?)",
             [temperature]
         );
 
