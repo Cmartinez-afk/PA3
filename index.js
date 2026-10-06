@@ -25,14 +25,19 @@ async function query(sql, params = []) {
 
 app.post("/api/sensor", async (req, res) => {
 
-    console.log(req.body);
+    console.log("POST /api/sensor received");
+    console.log("Body:", req.body);
 
     const temperature = req.body.temperature;
 
+    console.log("Temperature:", temperature);
+
     try {
 
+        console.log("Attempting database insert...");
+
         await query(
-            "INSERT INTO pa3 (data) VALUES (?)",
+            "INSERT INTO PA3 (info) VALUES (?)",
             [temperature]
         );
 
@@ -45,14 +50,15 @@ app.post("/api/sensor", async (req, res) => {
 
     } catch (error) {
 
-        console.error("Database error:", error);
+        console.error("DATABASE ERROR:");
+        console.error(error);
 
         res.status(500).json({
-            message: "Error saving temperature"
+            message: "Error saving temperature",
+            error: error.message
         });
     }
 });
-
 app.listen(3000, () => {
     console.log("Server running on port 3000");
 });
